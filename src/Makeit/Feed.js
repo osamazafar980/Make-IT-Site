@@ -22,16 +22,18 @@ import './App.css';
 import {
   useParams
 } from "react-router-dom";
+import { alertClasses } from "@material-ui/core";
 function Feed() {
-  const [posts, setPosts] = useState([
-    { id:"101", data: { name:"ALI", description:"xzc asa wqe zxc asdzx ", message:"sadz xc c", photoUrl:"http://iconbug.com/data/83/512/95c5e2040458a8933ba583e5d7bd2e41.png" } }
-  ]);
+  const [posts, setPosts] = useState([]);
   
   let {userID} = useParams();
   const [input, setInput] = useState([]);
+  const [des, setDes] = useState([]);
   const [filter, setFilter] = useState("Text");
+  const [uname, setName] = useState("Text");
+  const [picURL, setPicURL] = useState("http://iconbug.com/data/83/512/95c5e2040458a8933ba583e5d7bd2e41.png");
   const [selected, setSelected] = useState(["selected","none","none"]);
-
+  
   useEffect(() => {
     db.collection("posts")
       .get()
@@ -51,7 +53,23 @@ function Feed() {
       .catch(function(error) {
           console.log("Error getting documents: ", error);
       });
-      
+
+      db.collection("users")
+      .get()
+      .then(async function(querySnapshot) {
+        await querySnapshot.forEach(function(doc) {
+          if(doc.id==userID){
+            setName(doc.data().name)
+            if(doc.data().imageLink)
+              {setPicURL(doc.data().imageLink)}
+          }   
+              
+          });
+        
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+      });      
       
   }, []);
 
@@ -69,7 +87,7 @@ function Feed() {
 
   return (
     <div className="App">
-      <Header />
+      <Header id={userID}/>
       <div className="cover">
         <Sidebar className='sideBar' id={userID} />
       <div className="App_body">
@@ -86,12 +104,22 @@ function Feed() {
                   type="text"
                   placeholder={"Enter "+filter}
                 />
-                <button onClick={sendPost} type="submit">
-                  Send
-                </button>
+                
               </form>
             </div>
-
+            <div className="feed_input" id="description">
+              <CreateIcon />
+              <form>
+                <input
+                  value={des}
+                  onChange={(e) => {
+                    setDes(e.target.value);
+                  }}
+                  type="text"
+                  placeholder={"Enter Description"}
+                />
+              </form>
+            </div>
             <div className="feed_inputoptions">
               
               <div onClick={()=>{
@@ -121,23 +149,32 @@ function Feed() {
                   <p>Video</p>
                 </div>
               <div onClick={async ()=>{
-                await addDoc(collection(db, "posts"), { name:"ALI", description:"xzc asa wqe zxc asdzxxx ", message:"sadz xc cassa", photoUrl:"http://iconbug.com/data/83/512/95c5e2040458a8933ba583e5d7bd2e41.png",
+                if(input.length==0 || des.length==0){
+                  input.length==0?alert(filter+" Required"):alert("Description Required")
+                }else{
+                if(filter=="Text"){
+                await addDoc(collection(db, "posts"), { name:uname, description:des, message:input, photoUrl:picURL,
                 postPicURL:"None",
                 postVideoURL:"None",
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
-              await addDoc(collection(db, "posts"), { name:"ALI", description:"xzc asa wqe zxc asdzxxx ", message:"None", photoUrl:"http://iconbug.com/data/83/512/95c5e2040458a8933ba583e5d7bd2e41.png",
-                postPicURL:"http://iconbug.com/data/83/512/95c5e2040458a8933ba583e5d7bd2e41.png",
+            }else if(filter=="Photo URL"){
+              await addDoc(collection(db, "posts"), { name:uname, description:des, message:"None", photoUrl:picURL,
+                postPicURL:input,
                 postVideoURL:"None",
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
-              await addDoc(collection(db, "posts"), { name:"ALI", description:"xzc asa wqe zxc asdzxxx ", message:"None", photoUrl:"http://iconbug.com/data/83/512/95c5e2040458a8933ba583e5d7bd2e41.png",
+            }else if(filter=="Video URL"){
+              await addDoc(collection(db, "posts"), { name:uname, description:des, message:"None", photoUrl:picURL,
                 postPicURL:"None",
-                postVideoURL:"https://youtu.be/j6PbonHsqW0",
+                postVideoURL:input,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
-                console.log("sad")
-              }}className="Inputoptions">
+            }
+                setInput("")
+                setDes("")
+                alert("Post Created!")
+              }}}className="Inputoptions">
                 <PostAddIcon style={{ color:"#70B5F9" }} />
                 <p>Post</p>
               </div>

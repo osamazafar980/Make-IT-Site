@@ -8,11 +8,16 @@ import DialogActions from "@material-ui/core/DialogActions";
 import SearchIcon from "@material-ui/icons/Search";
 import Header from './Header';
 import fetch from "node-fetch";
+import {
+  useParams
+} from "react-router-dom";
 import "./MainRecipe.css"
 const APP_ID = "a52b4d43";
 const APP_KEY = "e0e5c667605f5e91d8275c973531b80a";
 
 const MainRecipe = () => {
+  
+  let {userID} = useParams();
   const [searchQuery, updateSearchQuery] = useState("");
   const [recipeList, updateRecipeList] = useState([]);
   const [timeoutId, updateTimeoutId] = useState();
@@ -38,7 +43,7 @@ const MainRecipe = () => {
   };
 
   return (
-    <div><Header />
+    <div><Header id={userID}/>
       <Container>
         <SearchBox>
           <SearchIcon />

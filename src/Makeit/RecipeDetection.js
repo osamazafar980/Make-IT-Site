@@ -2,13 +2,16 @@ import React from "react";
 import "./RecipeDetection.css";
 import { useState, useEffect, useRef } from "react";
 import Header from "./Header";
-
+import {
+  useParams
+} from "react-router-dom";
 function RecipeDetection() {
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [model, setModel] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const [results, setResults] = useState([]);
   const [history, setHistory] = useState([]);
+  let {userID} = useParams();
 
   const imageRef = useRef();
   const textInputRef = useRef();
@@ -54,7 +57,7 @@ function RecipeDetection() {
   }
 
   return (
-    <div><Header />
+    <div><Header id={userID}/>
 
     <div className="main">
       <h1 className="name">Recipe Identification</h1>

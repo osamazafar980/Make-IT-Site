@@ -37,14 +37,14 @@ const App = () => {
           <Route exact path="/" element={<UserLogin />} />
           <Route exact path="/Register" element={<UserRegister />} />
           <Route exact path="/ForgetPass" element={<ForgetPass />} />
-          <Route exact path="/MainRecipe" element={<MainRecipe />} />
+          <Route exact path="/MainRecipe/:userID" element={<MainRecipe />} />
           <Route exact path="/Feed/:userID" element={<Feed />} />
-          <Route exact path="/RecipeDetection" element={<RecipeDetection />} />
-          <Route exact path="/DietPlan" element={<DietPlan />} />
-          <Route exact path="/UserFeedback" element={<UserFeedback />} />
-          <Route exact path="/DietPlanCustom" element={<DietPlanCustom />} />
+          <Route exact path="/RecipeDetection/:userID" element={<RecipeDetection />} />
+          <Route exact path="/DietPlan/:userID" element={<DietPlan />} />
+          <Route exact path="/UserFeedback/:userID" element={<UserFeedback />} />
+          <Route exact path="/DietPlanCustom/:userID" element={<DietPlanCustom />} />
           <Route exact path="/Home/:userID" element={<Home />} />
-          <Route exact path="/Survey" element={<Survey />} />
+          <Route exact path="/Survey/:userID" element={<Survey />} />
 
         </Routes>
       </Router>

@@ -18,7 +18,7 @@ function Post(props) {
       <div className="post_header">
         <Avatar src={props.photoUrl}></Avatar>
         <div className="post_info">
-          <h2 >Abubakar</h2>
+          <h2 >{props.name}</h2>
           <p>{props.description}</p>
         </div>
       </div>

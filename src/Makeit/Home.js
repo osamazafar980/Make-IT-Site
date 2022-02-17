@@ -17,11 +17,14 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import {
   useParams
 } from "react-router-dom";
+import firebase from 'firebase/compat/app';
+
 function Home() {
   const navigate = useNavigate();
   let {userID} = useParams();
 
   return (
+    JSON.parse(localStorage.getItem('user'))?
     <div>
       <Header id={userID} />
       <div className="hero">
@@ -137,6 +140,9 @@ function Home() {
           </CardActions>
         </Card>
       </div>
+    </div>:<div className="notFound">
+      <p>Oppss!!! No Webpage</p>
+      <p>ERROR 404</p>
     </div>
   );
 }

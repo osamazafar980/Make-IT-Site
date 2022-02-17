@@ -94,6 +94,7 @@ function UserLogin() {
                   }  
                       
                   });
+                  localStorage.setItem('user', true);
                   navigate("/Home/"+temp)
                 });
               
@@ -119,6 +120,7 @@ function UserLogin() {
                   }  
                       
                   });
+                  localStorage.setItem('user', true);
                   navigate("/Home/"+temp)
                 });
         }}>
