@@ -27,6 +27,7 @@ const MainRecipe = () => {
     const response = await Axios.get(
       `https://api.edamam.com/search?q=${searchString}&from=0&to=12&app_id=${APP_ID}&app_key=${APP_KEY}`
     );
+    console.log(response.data.hits)
     updateRecipeList(response.data.hits);
   };
   useEffect(()=>{

@@ -6,6 +6,7 @@ import Notifications from "react-notifications-menu";
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import TodayIcon from '@material-ui/icons/Today';
 import ForumIcon from '@material-ui/icons/Forum';
+import OutdoorGrillIcon from '@mui/icons-material/OutdoorGrill';
 import LogoutIcon from '@mui/icons-material/Logout';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
@@ -51,10 +52,6 @@ function Header(props) {
     <div className="header">
       <div className="header_left">
         <Logo />
-        <div className="header_search">
-          <SearchIcon />
-          <input placeholder="Search" type="text" />
-        </div>
       </div>
 
       <div className="header_right">
@@ -69,6 +66,13 @@ function Header(props) {
           title="Recipe"
           onClick={() => navigate("/MainRecipe/"+props.id)}
         />
+        
+        <Headerop
+          Icon={OutdoorGrillIcon}
+          title="Custom Recipe"
+          onClick={() => navigate("/CustomRecipe/"+props.id)}
+        />
+        
         <Headerop
           Icon={ViewInArIcon}
           title="AR"

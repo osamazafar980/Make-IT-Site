@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Feedback from './pages/Feedback';
 import Header from './Makeit/Header';
 import MainRecipe from "./Makeit/MainRecipe";
+import CustomRecipe from "./Makeit/CustomRecipe";
 import Feed from "./Makeit/Feed";
 import RecipeDetection from "./Makeit/RecipeDetection";
 import DietPlan from "./Makeit/DietPlan";
@@ -38,6 +39,7 @@ const App = () => {
           <Route exact path="/Register" element={<UserRegister />} />
           <Route exact path="/ForgetPass" element={<ForgetPass />} />
           <Route exact path="/MainRecipe/:userID" element={<MainRecipe />} />
+          <Route exact path="/CustomRecipe/:userID" element={<CustomRecipe />} />
           <Route exact path="/Feed/:userID" element={<Feed />} />
           <Route exact path="/RecipeDetection/:userID" element={<RecipeDetection />} />
           <Route exact path="/DietPlan/:userID" element={<DietPlan />} />
