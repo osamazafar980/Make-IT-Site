@@ -34,6 +34,7 @@ const MainRecipe = () => {
   
   
   useEffect(()=>{
+    if(recipeList.length==0){
     db.collection("loadedRecipies")
               .get()
               .then(async function(querySnapshot) {
@@ -56,6 +57,25 @@ const MainRecipe = () => {
                   updateRecipeList(t)
 
                 });
+    }else{
+      var t=[]
+      var tempList=[...recipeList]
+      for(var i=0;i<tempList.length;i++){
+        var temp = tempList[i]
+        if(temp.cleanedIngredients.split(",").some(r=> cusine.indexOf(r) >= 0)){
+        var rec ={recipe: {
+          label:temp.translatedRecipeName,
+          image: temp.imageUrl,
+          url: temp.url,
+          calories:"unknown",
+          ingredients:temp.cleanedIngredients
+        }
+      }
+        t.push(rec)
+      }
+    }
+      updateRecipeList(t)
+    }
 
   },[recipeList])
 
