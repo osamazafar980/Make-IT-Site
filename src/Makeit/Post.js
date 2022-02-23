@@ -35,7 +35,7 @@ function Post(props) {
       <div className="post_buttons">
           <div className="Inputoptions"
             onClick={()=>{
-              var temp = colors;
+              var temp = [...colors];
               temp[0] = temp[0]=="gray"?"blue":"gray";
               setColors(temp)
             }}>
@@ -45,7 +45,7 @@ function Post(props) {
 
         <div className="Inputoptions"
             onClick={()=>{
-              var temp = colors;
+              var temp = [...colors];
               temp[1] = temp[1]=="gray"?"red":"gray";
               setColors(temp)
             }}>
@@ -55,7 +55,7 @@ function Post(props) {
 
         <div className="Inputoptions"
             onClick={()=>{
-              var temp = colors;
+              var temp = [...colors];
               temp[2] = temp[2]=="gray"?"orange":"gray";
               setColors(temp)
             }}>

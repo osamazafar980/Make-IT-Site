@@ -46,7 +46,7 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="large" onClick={() => navigate("/MainRecipe")}>Try It</Button>
+            <Button size="large" onClick={() => navigate("/MainRecipe/"+userID)}>Try It</Button>
 
           </CardActions>
         </Card><Card sx={{ maxWidth: 345 }}>
@@ -63,7 +63,7 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => navigate("/AR")} size="large">Try It</Button>
+            <Button onClick={() => navigate("/AR/"+userID)} size="large">Try It</Button>
 
           </CardActions>
         </Card><Card sx={{ maxWidth: 345 }}>
@@ -80,7 +80,7 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => navigate("/RecipeDetection")} size="large">Try It</Button>
+            <Button onClick={() => navigate("/RecipeDetection/"+userID)} size="large">Try It</Button>
 
           </CardActions>
         </Card>
@@ -100,7 +100,7 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => navigate("/Feed")} size="large">Try It</Button>
+            <Button onClick={() => navigate("/Feed/"+userID)} size="large">Try It</Button>
 
           </CardActions>
         </Card> <Card sx={{ maxWidth: 345 }}>
@@ -118,7 +118,7 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => navigate("/DietPlan")} size="large">Try It</Button>
+            <Button onClick={() => navigate("/DietPlan/"+userID)} size="large">Try It</Button>
 
           </CardActions>
         </Card> <Card sx={{ maxWidth: 345 }}>
@@ -135,7 +135,7 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => navigate("/UserFeedback")} size="large">Try It</Button>
+            <Button onClick={() => navigate("/UserFeedback/"+userID)} size="large">Try It</Button>
 
           </CardActions>
         </Card>
