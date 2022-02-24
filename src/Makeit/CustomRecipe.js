@@ -31,53 +31,32 @@ const MainRecipe = () => {
   const [timeoutId, updateTimeoutId] = useState();
   const [cusine, setCusine] = useState([]);
   const [selected, setSelected] = useState(['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none']);
+  let rJson = require('.././Makeit/recipes.json');
   
   
   useEffect(()=>{
-    if(recipeList.length==0){
-    db.collection("loadedRecipies")
-              .get()
-              .then(async function(querySnapshot) {
-                var t=[]
-                await querySnapshot.forEach(function(doc) {
-                  var temp=doc.data()
-                  if(temp.cleanedIngredients.split(",").some(r=> cusine.indexOf(r) >= 0)){
-                  var rec ={recipe: {
-                    label:temp.translatedRecipeName,
-                    image: temp.imageUrl,
-                    url: temp.url,
-                    calories:"unknown",
-                    ingredients:temp.cleanedIngredients
-                  }
-                }
-                  t.push(rec)
-                }
-                      
-                  });
-                  updateRecipeList(t)
-
-                });
-    }else{
+    console.log(cusine)
       var t=[]
-      var tempList=[...recipeList]
+      var tempList=[...rJson]
+      var c = [...cusine]
       for(var i=0;i<tempList.length;i++){
         var temp = tempList[i]
-        if(temp.cleanedIngredients.split(",").some(r=> cusine.indexOf(r) >= 0)){
-        var rec ={recipe: {
-          label:temp.translatedRecipeName,
-          image: temp.imageUrl,
-          url: temp.url,
-          calories:"unknown",
-          ingredients:temp.cleanedIngredients
+        if(temp['Cleaned-Ingredients'].split(",").some(r=> c.indexOf(r)>=0)){
+          var rec ={recipe: {
+            label:temp.TranslatedRecipeName,
+            image: temp['image-url'],
+            url: temp.URL,
+            calories:"unknown",
+            ingredients:temp['Cleaned-Ingredients']
+          }
         }
-      }
-        t.push(rec)
+          t.push(rec)
       }
     }
+    console.log(t.length)
       updateRecipeList(t)
-    }
 
-  },[recipeList])
+  },[cusine])
 
   return (
     <div><Header id={userID}/>
@@ -100,7 +79,7 @@ const MainRecipe = () => {
                       });
                         setCusine(filtered)
                       }else{
-                        var t = cusine
+                        var t = [...cusine]
                         t.push(ing)
                         setCusine(t)
                       }

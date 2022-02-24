@@ -30,6 +30,11 @@
       "last 1 safari version"
     ]
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "-": "0.0.1",
     "@emotion/react": "^11.7.1",
@@ -55,11 +60,13 @@
     "change-case": "^4.1.2",
     "chart.js": "^3.6.2",
     "classnames": "^2.3.1",
+    "csv-parse": "^5.0.4",
     "csv-parser": "^3.0.0",
     "date-fns": "^2.27.0",
     "faker": "^5.5.3",
     "firebase": "^9.6.7",
     "formik": "^2.2.9",
+    "fs": "^0.0.1-security",
     "history": "^5.1.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.29.1",
